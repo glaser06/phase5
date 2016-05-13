@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   # get modules to help with some functionality
   include CreameryHelpers::Validations
 
+  has_secure_password
   # Relationships
   belongs_to :employee
 
@@ -21,7 +22,7 @@ class User < ActiveRecord::Base
     role.to_sym == authorized_role
   end
 
-  
+
   private
   def employee_is_active_in_system
     is_active_in_system(:employee)
