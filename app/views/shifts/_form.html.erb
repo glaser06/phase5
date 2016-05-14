@@ -2,7 +2,7 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Shift</legend>
 
-    <%= f.input :assignment_id, :collection => Assignment.active.alphabetical, :include_blank => false, input_html: {class: "avg"} %>
+    <%= f.input :assignment_id, :collection => Assignment.current.by_store, :include_blank => false, input_html: {class: "avg"} %>
     
     <%= f.input :date, :label => "Date", :as => :date, :start_year => Date.today.year, :end_year => Date.today.year - 1, :order => [:month, :day, :year] %>
 

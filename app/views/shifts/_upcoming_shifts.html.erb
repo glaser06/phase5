@@ -1,24 +1,23 @@
 <% if @upcoming_shifts.empty? %>
   <p><em>You have no upcoming shifts</em></p>
 <% else %>
-  <h3>Current Shifts</h3>
+  <h3>Upcoming Shifts</h3>
   <table class="table table-striped">
     <thead>
       <tr>
         <th width="225">Assigned Store</th>
         <th width="225">Shift Date</th>
         <th width="125">Start Time</th>
-        <th width="125">End Time</th>
+        
         <th width="75">&nbsp;</th>
       </tr>
     </thead>
     <tbody>
-      <% @active_shifts.each do |shift| %>
+      <% @upcoming_shifts.each do |shift| %>
         <tr>
           <td><%= link_to shift.assignment.store.name, store_path(shift.assignment.store) %></td>
           <td><%= shift.date.strftime("%m/%d/%y") %></td>
           <td><%= shift.start_time.strftime("%m/%d/%y") %></td>      
-          <td><%=# shift.end_time.strftime("%m/%d/%y") %></td>   
           <td>
             <%= link_to(edit_shift_path(shift), class: 'button tiny radius warning') do %>
               &nbsp;Edit&nbsp;
