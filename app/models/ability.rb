@@ -28,20 +28,28 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/wiki/Defining-Abilities
+    user ||= User.new # guest user (not logged in)
     if user.role? :admin
       can :manage, :all
-    elsif user.role? :manager
-    elsif user.role? :employee
-      can :read, Employee do |e|
-        e.id == user.employee_id
-      end
+    # elsif user.role? :manager
       
-      can :update, Employee do |e|
-        e.id == user.employee_id
-      end
+    #   cannot :read, Employee do |e|
+    #     e.store.id != user.store.id
+    #   end
+
+    # elsif user.role? :employee
+    #   can :read, Employee, :employee_id => user.employee_id
+    #   can :update, Employee, :employee_id => user.employee_id, :
+    #   cannot :update, Shift
+    #   cannot :update, Store
+    #   cannot :update, StoreFlavor
+      
 
     else
-      can :read, :all
+      can :read, Store
+      cannot :read, Employee
+      cannot :read, Shift
+      cannot :update, :all
     end
   end
 end
