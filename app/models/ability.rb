@@ -36,25 +36,42 @@ class Ability
       can :read, Employee do |e|
         e.current_assignment.store.id == user.employee.current_assignment.store.id
       end
+      # can :read, Employee, :current_assignment => user.employee.current_assignment
+      
+
+      
       can :read, Store
       can :read, Job
       can :read, Flavor
-      can :read, Shift do |s| 
-        s.store.id
-      can :create, Shift do |s|
-        s.
+      # can :read, Shift do |s| 
+      #   s.store.id == user.employee.current_assignment.store.id
+      # end
+      can :manage, Shift do |s|
+        s.store.id == user.employee.current_assignment.store.id
       end 
+      can :manage, StoreFlavor do |s|
+        s.store_id == user.employee.current_assignment.store_id
+      end
+      can :manage, ShiftJob do |s|
+        s.store.id == user.employee.current_assignment.store_id
+      end
+
+      
 
     elsif user.role? :employee
-      can :read, Employee, :employee_id => user.employee_id
-      can :update, Employee, :employee_id => user.employee_id, :
-      cannot :update, Shift
-      cannot :update, Store
-      cannot :update, StoreFlavor
+      can :show, Employee, :id => user.employee_id
+      can :update, Employee, :id => user.employee_id
+      can :read, Store
+      can :read, User, :employee_id => user.employee_id
+      can :read, Assignment, :employee_id => user.employee_id
+      can :read, Shift, :assignment_id => user.employee.current_assignment.id
+      can :manage, User
+
       
 
     else
       cannot :manage, :all 
+      can :manage, User
       can :read, Store
       cannot :read, Employee
       cannot :read, Shift

@@ -1276,6 +1276,7 @@ $topbar-bg: $topbar-bg-color;
   font-size: 85%;
 }
 
+
 table {
   border-collapse:collapse;
 }
@@ -1348,6 +1349,9 @@ select.time { width: 90px; }
 label {
   padding-right: 4px;
 }
-
+#navbar1 {
+  width: 60%;
+  margin: 0 Auto;
+}
 
 @import 'foundation';

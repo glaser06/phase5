@@ -1,4 +1,4 @@
-<div  class="contain-to-grid">
+<div  id="navbar1" class="contain-to-grid">
   <nav  class="top-bar" data-topbar role="navigation"> 
     <section class="top-bar-section">
       <ul id="nav1" class="left">
@@ -10,14 +10,16 @@
           <%= link_to "Stores", stores_path %>
           <ul class="dropdown">
             <li><%= link_to "Store List", stores_path %></li>
+            <% if can? :manage, Store %>
             <li><%= link_to "Add a Store", new_store_path %></li>
+            <% end %>
           </ul>
         </li>
 
         <!-- options for employees -->
         <% if current_user.present? %>
           <% if current_user.role? :employee %>
-          <% else %> 
+          <% elsif current_user.role? :admin%> 
             <li class="has-dropdown">
               <%= link_to "Employees", employees_path %>
               <ul class="dropdown">

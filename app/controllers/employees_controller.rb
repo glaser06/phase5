@@ -1,9 +1,11 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
   before_action :check_login
-  authorize_resource
+  load_and_authorize_resource
+
   
   def index
+    
     @active_employees = Employee.active.alphabetical.paginate(page: params[:page]).per_page(10)
     @inactive_employees = Employee.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
   end
@@ -54,7 +56,7 @@ class EmployeesController < ApplicationController
   end
 
   def employee_params
-    params.require(:employee).permit(:first_name, :last_name, :ssn, :date_of_birth, :role, :phone, :active, users_attributes: [:id,:employee_id, :email, :password,:password_confirmation, :_destroy])
+    params.require(:employee).permit(:first_name, :last_name, :ssn, :date_of_birth, :role, :phone, :active, users_attributes: [:employee_id, :email, :password,:password_confirmation, :_destroy])
   end
 
 end

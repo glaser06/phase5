@@ -3,6 +3,7 @@ class Store < ActiveRecord::Base
   before_save :reformat_phone
   before_destroy :is_destroyable?
   after_rollback :convert_to_inactive
+  before_validation :get_store_coordinates, :if => :street_changed?
   
   # Relationships
   has_many :assignments
@@ -42,7 +43,15 @@ class Store < ActiveRecord::Base
     end
     coord
   end
-  
+  def create_map_link(zoom=12,width=400,height=400)
+    markers = ""; i = 1
+    
+    markers += "&markers=color:red%7Ccolor:red%7Clabel:#{1}%7C#{latitude},#{longitude}"
+    
+    
+    map = "http://maps.google.com/maps/api/staticmap?center= #{latitude},#{longitude}&zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap#{markers}&sensor=false"
+  end
+
   # Callback code
   # -----------------------------
   private
