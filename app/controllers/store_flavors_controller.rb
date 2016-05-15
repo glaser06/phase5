@@ -3,8 +3,11 @@ class StoreFlavorsController < ApplicationController
   before_action :check_login, only: [:edit,:update,:destroy,:new]
   authorize_resource
   def index
-    @flavors_for_store = current_user.employee.current_assignment.store.store_flavors.paginate(page: params[:page]).per_page(8)
-    
+    if current_user.role? :admin
+      @flavors_for_store = StoreFlavor.all.paginate(page: params[:page]).per_page(8)
+    else 
+      @flavors_for_store = current_user.employee.current_assignment.store.store_flavors.paginate(page: params[:page]).per_page(8)
+    end
   end
 
   def show

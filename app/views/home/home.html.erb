@@ -1,13 +1,15 @@
   <% if current_user.nil? %>
     <%= render :partial => 'general_home' %>    
   <% else %>
-    <h2>What would you like to do?</h2>
+    
     <% if current_user.role? :admin %>
-      <%= render :partial => 'admin_dashboard' %>    
-    <% elsif current_user.role? :manager %>
+      <%= render "employees/current_employees", :@active_employees => Employee.active.alphabetical.paginate(page: params[:page]).per_page(5) %>
       
+    <% elsif current_user.role? :manager %>
+      <h2>What would you like to do?</h2>
       <%= render :partial => 'manager_actions' %> 
     <% elsif current_user.role? :employee %>
+      <h2>What would you like to do?</h2>
       <%= render "shifts/upcoming_shifts", :@upcoming_shifts => current_user.employee.shifts.upcoming.chronological.paginate(page: params[:page]).per_page(5) %> 
       <%= render "shifts/past_shifts", :@past_shifts => current_user.employee.shifts.past.chronological.paginate(page: params[:page]).per_page(5) %> 
       <%= render :partial => 'employee_actions' %>

@@ -1,3 +1,6 @@
-
-<%= render partial: "manage_store_flavors" %>
+<% if current_user.role? :admin %>
+  <%= render partial: "list_store_flavors" %> 
+<% else %> 
+  <%= render partial: "manage_store_flavors" %>
+<% end %>
 <%= link_to "Add more flavors", new_store_flavor_path %>

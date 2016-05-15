@@ -3,7 +3,8 @@ class FlavorsController < ApplicationController
   before_action :check_login, only: [:edit,:update,:destroy,:new]
   authorize_resource
   def index
-    @flavors = Flavor.active.alphabetical.all
+    @active_flavors = Flavor.active.alphabetical.all.paginate(page: params[:page]).per_page(8)
+
     
   end
 
@@ -22,7 +23,7 @@ class FlavorsController < ApplicationController
     @flavor = Flavor.new(flavor_params)
     
     if @flavor.save
-      redirect_to flavor_path(@flavor), notice: "Successfully created flavor."
+      redirect_to flavors_path, notice: "Successfully created flavor."
     else
       render action: 'new'
     end
@@ -30,7 +31,7 @@ class FlavorsController < ApplicationController
 
   def update
     if @flavor.update(flavor_params)
-      redirect_to flavor_path(@flavor), notice: "Successfully updated flavor."
+      redirect_to flavors_path, notice: "Successfully updated flavor."
     else
       render action: 'edit'
     end
