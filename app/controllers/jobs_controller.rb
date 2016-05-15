@@ -3,7 +3,7 @@ class JobsController < ApplicationController
   before_action :check_login, only: [:edit,:update,:destroy,:new]
   
   def index
-    @jobs = Job.active.alphabetical.all
+    @active_jobs = Job.active.alphabetical.paginate(page: params[:page]).per_page(10)
     
   end
 
