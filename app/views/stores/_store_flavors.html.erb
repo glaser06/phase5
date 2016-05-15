@@ -1,0 +1,21 @@
+<h3>Flavors</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+        
+    </tr>
+  </thead>
+  <tbody>
+    <% @storeflavors.each do |flavor| %>
+      <tr>
+        <td><%=flavor.name%></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= will_paginate @storeflavors, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+
+
+

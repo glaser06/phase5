@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
   before_action :set_job, only: [:show, :edit, :update, :destroy]
   before_action :check_login, only: [:edit,:update,:destroy,:new]
-  
+  authorize_resource
   def index
     @active_jobs = Job.active.alphabetical.paginate(page: params[:page]).per_page(10)
     

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  
   before_action :check_login, only: [:edit,:update]
   def new
     @user = User.new

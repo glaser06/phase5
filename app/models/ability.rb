@@ -31,25 +31,35 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.role? :admin
       can :manage, :all
-    # elsif user.role? :manager
+    elsif user.role? :manager
       
-    #   cannot :read, Employee do |e|
-    #     e.store.id != user.store.id
-    #   end
+      can :read, Employee do |e|
+        e.current_assignment.store.id == user.employee.current_assignment.store.id
+      end
+      can :read, Store
+      can :read, Job
+      can :read, Flavor
+      can :read, Shift do |s| 
+        s.store.id
+      can :create, Shift do |s|
+        s.
+      end 
 
-    # elsif user.role? :employee
-    #   can :read, Employee, :employee_id => user.employee_id
-    #   can :update, Employee, :employee_id => user.employee_id, :
-    #   cannot :update, Shift
-    #   cannot :update, Store
-    #   cannot :update, StoreFlavor
+    elsif user.role? :employee
+      can :read, Employee, :employee_id => user.employee_id
+      can :update, Employee, :employee_id => user.employee_id, :
+      cannot :update, Shift
+      cannot :update, Store
+      cannot :update, StoreFlavor
       
 
     else
+      cannot :manage, :all 
       can :read, Store
       cannot :read, Employee
       cannot :read, Shift
-      cannot :update, :all
+      
+
     end
   end
 end

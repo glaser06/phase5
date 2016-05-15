@@ -1,14 +1,16 @@
 class StoresController < ApplicationController
   before_action :set_store, only: [:show, :edit, :update, :destroy]
   before_action :check_login, only: [:edit,:update,:destroy,:new]
-  
+  authorize_resource
   def index
     @active_stores = Store.active.alphabetical.paginate(page: params[:page]).per_page(10)
     @inactive_stores = Store.inactive.alphabetical.paginate(page: params[:page]).per_page(10)  
+
   end
 
   def show
     @current_assignments = @store.assignments.current.by_employee.paginate(page: params[:page]).per_page(8)
+    @storeflavors = @store.flavors.active.alphabetical.paginate(page: params[:page]).per_page(7)
   end
 
   def new

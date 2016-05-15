@@ -15,9 +15,7 @@
         <%= e_f.simple_fields_for :user do |user_f| %>
           <%= render :partial => "user_fields", :locals => { :f => user_f } %>
         <% end %>
-        <p>
-          <br /><%= e_f.link_to_add("Add User", :user, :class => 'button tiny') %>
-        </p>
+        
       </div>
     </div>
   </div>

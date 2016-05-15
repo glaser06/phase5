@@ -1,0 +1,17 @@
+<%= simple_form_for @store_flavor, html: { class: 'form-horizontal' } do |f| %>
+  <fieldset>
+    <legend><%= controller.action_name.capitalize %> Store Flavor</legend>
+    <b> For <%= current_user.employee.current_assignment.store.name %>
+    
+    <%= f.input :flavor_id, :collection => Flavor.active.alphabetical, :include_blank => false, input_html: {class: "avg"} %>
+    <%= f.hidden_field :store_id, :value =>current_user.employee.current_assignment.store.id %>
+    
+    
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'button radius' %>
+      <%= link_to 'Cancel', home_path, :class => 'button alert radius' %>
+      <%= link_to 'Add a Flavor', new_flavor_path,:class => 'button radius' %>
+    </div>
+  </fieldset>
+<% end %>

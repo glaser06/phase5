@@ -1,7 +1,7 @@
-<% if @upcoming_shifts.empty? %>
+<% if @past_shifts.empty? %>
   <p><em>You have no upcoming shifts</em></p>
 <% else %>
-  <h3>Upcoming Shifts</h3>
+  <h3>Past Shifts</h3>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -11,20 +11,22 @@
         <% end %>
         <th width="225">Shift Date</th>
         <th width="125">Start Time</th>
+        <th width="125">End Time </th>
         
         
       </tr>
     </thead>
     <tbody>
-      <% @upcoming_shifts.each do |shift| %>
+      <% @past_shifts.each do |shift| %>
         <tr>
           <td><%= link_to shift.assignment.store.name, store_path(shift.assignment.store) %></td>
           <% if !(current_user.role? :employee) %>
             <td><%= link_to shift.employee.name, employee_path(shift.employee) %> 
           <% end %> 
           <td><%= shift.date.strftime("%m/%d/%y") %></td>
-          <td><%= shift.start_time.strftime("%l:%M") %></td> 
-          <% if !(current_user.role? :employee) %>     
+          <td><%= shift.start_time.strftime("%l:%M") %></td>      
+          <td><%= shift.end_time.strftime("%l:%M") %> </td>
+          <% if !(current_user.role? :employee) %>
             <td>
               <%= link_to(edit_shift_path(shift), class: 'button tiny radius warning') do %>
                 &nbsp;Edit&nbsp;
@@ -35,5 +37,5 @@
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate @upcoming_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> <p>&nbsp;</p>
+  <%= will_paginate @past_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> <p>&nbsp;</p>
 <% end %>

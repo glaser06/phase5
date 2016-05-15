@@ -7,12 +7,18 @@ Rails.application.routes.draw do
   resources :sessions
   resources :shifts
   resources :jobs
+  resources :store_flavors
+  resources :shift_jobs
+  resources :flavors
+  
+
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
   get 'about' => 'home#about', as: :about
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
+  
 
   get 'user/edit' => 'users#edit', :as => :edit_current_user
   get 'signup' => 'users#new', :as => :signup

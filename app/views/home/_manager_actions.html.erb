@@ -1,0 +1,15 @@
+
+<div class = "form-actions">
+  <%= link_to(employee_path(current_user.employee),class: 'button radius') do %>
+    &nbsp;<%= "View Your Details" %>
+  <% end %>
+  <%= link_to(store_flavors_path,class: 'button radius') do %>
+    &nbsp;<%= "Manage Store Flavor" %>
+  <% end %>
+  <%= link_to(new_shift_job_path,class: 'button radius') do %>
+    &nbsp;<%= "Add Jobs to Past Shifts" %>
+  <% end %>
+  <%= link_to(new_shift_path,class: 'button radius') do %>
+    Add Shifts
+  <% end %> 
+</div> 
