@@ -18,9 +18,9 @@ class EmployeesController < ApplicationController
 
   def new
     @employee = Employee.new
+    @employee.build_user(:employee_id => @employee.id)
     
-    @employee.user.employee = @employee
-    @employee.build_user
+    
 
   end
 
@@ -30,8 +30,9 @@ class EmployeesController < ApplicationController
 
   def create
     @employee = Employee.new(employee_params)
-    # @employee.build_user
+    
     if @employee.save
+      
       redirect_to employee_path(@employee), notice: "Successfully created #{@employee.proper_name}."
     else
       render action: 'new'

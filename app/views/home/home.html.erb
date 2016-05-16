@@ -3,6 +3,10 @@
   <% else %>
     
     <% if current_user.role? :admin %>
+      <p> 
+        Stats: Active Employees: <%= Employee.active.count %>,
+              Active Flavors: <%= Flavor.active.count %> 
+      </p> 
       <%= render "employees/current_employees", :@active_employees => Employee.active.alphabetical.paginate(page: params[:page]).per_page(5) %>
       
     <% elsif current_user.role? :manager %>

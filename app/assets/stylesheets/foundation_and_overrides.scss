@@ -1241,7 +1241,7 @@ $topbar-bg: $topbar-bg-color;
   margin-right: 20%;
 }
 #nav1 {
-  margin-left: 20%;
+  margin-left: 15%;
   
 }
 
@@ -1340,6 +1340,9 @@ select.time { width: 90px; }
   border: none;
   padding: 10px 10px 10px 180px;
   /*padding-left: 180px;*/
+}
+body {
+  background-image: url('/assets/icecream_background.jpg');
 }
 
 .pagination ul > li > a, .pagination ul > li > span {

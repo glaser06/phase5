@@ -3,7 +3,7 @@ class ShiftsController < ApplicationController
   before_action :check_login, only: [:edit,:update,:destroy,:new]
   authorize_resource
   def index
-    @upcoming_shifts = Shift.upcoming.chronological.paginate(page: params[:page]).per_page(10)
+    @upcoming_shifts = Shift.upcoming.chronological.by_store.paginate(page: params[:page]).per_page(10)
     @past_shifts = Shift.past.chronological.paginate(page: params[:page]).per_page(10)  
   end
 

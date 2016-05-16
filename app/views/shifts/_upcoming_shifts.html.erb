@@ -7,10 +7,13 @@
       <tr>
         <th width="225">Assigned Store</th>
         <% if !(current_user.role? :employee) %>
-        <th width="225">Employee</th>
+          <th width="225">Employee</th>
         <% end %>
         <th width="225">Shift Date</th>
         <th width="125">Start Time</th>
+        <% if !(current_user.role? :employee) %>     
+          <th width="75"> </th>
+        <% end %>
         
         
       </tr>
