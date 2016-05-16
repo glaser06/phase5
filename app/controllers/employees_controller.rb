@@ -5,8 +5,12 @@ class EmployeesController < ApplicationController
 
   
   def index
-    
-    @active_employees = Employee.active.alphabetical.paginate(page: params[:page]).per_page(10)
+    if current_user.role? :manager
+      t = current_user.employee.current_assignment.store.assignments.current.map{ |a| a.employee}.sort_by &:last_name
+      @active_employees = t.paginate(:per_page => 8)
+    else 
+      @active_employees = Employee.active.alphabetical.paginate(page: params[:page]).per_page(10)
+    end 
     @inactive_employees = Employee.inactive.alphabetical.paginate(page: params[:page]).per_page(10)
   end
 

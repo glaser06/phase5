@@ -71,7 +71,7 @@ class Ability
 
     else
       cannot :manage, :all 
-      can :manage, User
+      
       can :read, Store
       cannot :read, Employee
       cannot :read, Shift

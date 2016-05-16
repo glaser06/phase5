@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper :all
   rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = "Go away or I shall taunt you a second time."
+    flash[:error] = "You do not have the authorization to view this. "
     redirect_to home_path
   end
   private

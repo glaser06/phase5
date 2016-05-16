@@ -59,7 +59,7 @@
                 <li><%= link_to "Create New Flavor", new_flavor_path %></li>
               </ul>
             </li>
-            <!-- options for flavors -->
+            <!-- options for Store Flavors -->
             <li class="has-dropdown">
               <%= link_to "Store Flavors", store_flavors_path %>
               <ul class="dropdown">
@@ -67,6 +67,23 @@
                 <li><%= link_to "Create New ", new_store_flavor_path %></li>
               </ul>
             </li>
+          <% elsif current_user.role? :manager %>
+            <li class="has-dropdown">
+              <%= link_to "Employees", employees_path %>
+              <ul class="dropdown">
+                <li><%= link_to "Employee List", employees_path %></li>
+                
+              </ul>
+            </li>
+            <!-- options for Store Flavors -->
+            <li class="has-dropdown">
+              <%= link_to "Store Flavors", store_flavors_path %>
+              <ul class="dropdown">
+                <li><%= link_to "Store Flavors List", store_flavors_path %></li>
+                <li><%= link_to "Create New ", new_store_flavor_path %></li>
+              </ul>
+            </li>
+
           <% end %> 
           
 

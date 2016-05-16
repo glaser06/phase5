@@ -1235,10 +1235,14 @@ $topbar-bg: $topbar-bg-color;
 
 #title_area {
   background-color: #ffffff;
+  
+  
   align: center;
+
   width: 60%;
-  margin-left: 25%;
-  margin-right: 20%;
+  
+  margin-left: 40%;
+  margin-right: 50%;
 }
 #nav1 {
   margin-left: 15%;
@@ -1252,6 +1256,7 @@ $topbar-bg: $topbar-bg-color;
 }
 #login {
   margin-left: 20%;
+  margin-right: 20%;
 }
 #footer {
   margin-top: 15px;
@@ -1341,9 +1346,8 @@ select.time { width: 90px; }
   padding: 10px 10px 10px 180px;
   /*padding-left: 180px;*/
 }
-body {
-  background-image: url('/assets/icecream_background.jpg');
-}
+
+
 
 .pagination ul > li > a, .pagination ul > li > span {
   border-left-width: 1px;

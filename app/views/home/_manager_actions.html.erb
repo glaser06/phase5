@@ -1,15 +1,26 @@
 
-<div class = "form-actions">
+<div class = "form-actions" vertical-align="middle">
   <%= link_to(employee_path(current_user.employee),class: 'button radius') do %>
     &nbsp;<%= "View Your Details" %>
   <% end %>
+</div> 
+<div> 
   <%= link_to(store_flavors_path,class: 'button radius') do %>
     &nbsp;<%= "Manage Store Flavor" %>
   <% end %>
+</div>
+<div> 
   <%= link_to(new_shift_job_path,class: 'button radius') do %>
     &nbsp;<%= "Add Jobs to Past Shifts" %>
   <% end %>
+</div>
+<div> 
   <%= link_to(new_shift_path,class: 'button radius') do %>
     Add Shifts
   <% end %> 
-</div> 
+</div>
+<div> 
+  <%= link_to(employees_path,class: 'button radius') do %>
+    Manage Employees
+  <% end %> 
+</div>

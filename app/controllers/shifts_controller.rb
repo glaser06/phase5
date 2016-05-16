@@ -22,7 +22,7 @@ class ShiftsController < ApplicationController
     @shift = Shift.new(shift_params)
     
     if @shift.save
-      redirect_to shift_path(@shift), notice: "Successfully created shift."
+      redirect_to :action => 'new', notice: "Successfully created shift."
     else
       render action: 'new'
     end

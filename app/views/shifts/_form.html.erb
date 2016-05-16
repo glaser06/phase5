@@ -6,13 +6,14 @@
     
     <%= f.input :date, :label => "Date", :as => :date, :start_year => Date.today.year, :end_year => Date.today.year - 1, :order => [:month, :day, :year] %>
 
-    <%= f.input :start_time, :label => "Start Time", :as => :date, :start_year => Date.today.year, :end_year => Date.today.year - 1, :order => [:month, :day, :year] %>
+    <%= f.time_select :start_time, :label => "Start Time", :as => :time, :order => [:hour, :minute],:ampm => true%>
     <%# Only show the end_date on 'edit', not 'new' %>
     <% if controller.action_name == "edit" %>
-      <%= f.input :end_time, :label => "End Time", :as => :date, :start_year => Date.today.year, :end_year => Date.today.year - 1, :order => [:month, :day, :year] %>
+      <%= f.time_select :end_time, :label => "End Time", :as => :time, :order => [:hour, :minute],:ampm => true%>
     <% end %>
     
     <%= f.input :notes, input_html: {class: "avg"} %>
+
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>

@@ -11,31 +11,33 @@
   </head>
 
   <body>
-    <div id="title_area">
-      <%= link_to image_tag('creamery_title.png'), home_path %>
-    </div>
-    <%= render :partial => "partials/nav" %>
-    <div id="login">
-      <% if logged_in? %>
-        <%= link_to 'Logout', logout_path %>
-        <br>[<%= current_user.email %>]
-      <% else %>
-        <%= link_to 'Login', login_path %>
-        <%= link_to 'Register', new_user_path %>
-      <% end %>
-    </div>
-    
-    <div class="row">
-      <div class="small-12 columns" id="main_content">
-        <%= render :partial => "partials/flash" %>
-        <%= yield %>
+    <div id="background">
+      <div id="title_area">
+        <%= link_to image_tag('amc_logo.gif'), home_path %>
       </div>
-    </div>
-    <footer>
-      <div class="small-12 columns" id="footer">
-        <%= render partial: 'partials/footer' %>
+      <%= render :partial => "partials/nav" %>
+      <div id="login">
+        <% if logged_in? %>
+          <%= link_to 'Logout', logout_path %>
+          <br>[<%= current_user.email %>]
+        <% else %>
+          <%= link_to 'Login', login_path %>
+          <%= link_to 'Register', new_user_path %>
+        <% end %>
       </div>
-    </footer> 
-    <%= javascript_include_tag "application" %>
+      
+      <div class="row">
+        <div class="small-12 columns" id="main_content">
+          <%= render :partial => "partials/flash" %>
+          <%= yield %>
+        </div>
+      </div>
+      <footer>
+        <div class="small-12 columns" id="footer">
+          <%= render partial: 'partials/footer' %>
+        </div>
+      </footer> 
+      <%= javascript_include_tag "application" %>
+    </div>
   </body>
 </html>
